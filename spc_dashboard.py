@@ -684,18 +684,32 @@ elif st.session_state.page == "Map":
             """, unsafe_allow_html=True)
     
     with rank_col2:
+        # Hitung data dinamis berdasarkan hasil clustering
+        high_priority_districts = df[df['Prioritas'] == 'Prioritas Tinggi']['Kabupaten/Kota'].tolist()
+        medium_priority_districts = df[df['Prioritas'] == 'Prioritas Sedang']['Kabupaten/Kota'].tolist()
+        low_priority_districts = df[df['Prioritas'] == 'Prioritas Rendah']['Kabupaten/Kota'].tolist()
+
+        high_priority_miskin = df[df['Prioritas'] == 'Prioritas Tinggi']['Jumlah Penduduk Miskin (ribu)'].sum()
+        medium_priority_miskin = df[df['Prioritas'] == 'Prioritas Sedang']['Jumlah Penduduk Miskin (ribu)'].sum()
+        low_priority_miskin = df[df['Prioritas'] == 'Prioritas Rendah']['Jumlah Penduduk Miskin (ribu)'].sum()
+
+        # Format nama kabupaten/kota jadi string
+        high_names = ', '.join(high_priority_districts) if high_priority_districts else '-'
+        medium_names = ', '.join(medium_priority_districts) if medium_priority_districts else '-'
+        low_names = ', '.join(low_priority_districts) if low_priority_districts else '-'
+
         st.markdown(f"""
         <div class="dashboard-card" style="padding: 0.75rem;">
             <h3 style="font-size: 0.75rem;">📋 Ringkasan Prioritas</h3>
             <hr>
-            <p style="font-size: 0.65rem;"><strong>🔴 Prioritas Tinggi:</strong> Gunungkidul, Kulonprogo</p>
-            <p style="font-size: 0.65rem;"><strong>🟡 Prioritas Sedang:</strong> Bantul, Sleman</p>
-            <p style="font-size: 0.65rem;"><strong>🟢 Prioritas Rendah:</strong> Yogyakarta</p>
+            <p style="font-size: 0.65rem;"><strong>🔴 Prioritas Tinggi:</strong> {high_names}</p>
+            <p style="font-size: 0.65rem;"><strong>🟡 Prioritas Sedang:</strong> {medium_names}</p>
+            <p style="font-size: 0.65rem;"><strong>🟢 Prioritas Rendah:</strong> {low_names}</p>
             <hr>
             <p style="font-size: 0.65rem;"><strong>Total Penduduk Miskin:</strong><br>
-            🔴 Prioritas Tinggi: 215 ribu jiwa<br>
-            🟡 Prioritas Sedang: 145 ribu jiwa<br>
-            🟢 Prioritas Rendah: 35 ribu jiwa
+            🔴 Prioritas Tinggi: {high_priority_miskin:.0f} ribu jiwa<br>
+            🟡 Prioritas Sedang: {medium_priority_miskin:.0f} ribu jiwa<br>
+            🟢 Prioritas Rendah: {low_priority_miskin:.0f} ribu jiwa
             </p>
         </div>
         """, unsafe_allow_html=True)
