@@ -653,7 +653,7 @@ elif st.session_state.page == "Map":
     ranking_df = ranking_df.sort_values('Penduduk Miskin', ascending=False)
     ranking_df.index = range(1, len(ranking_df) + 1)
     
-    rank_col1, rank_col2, rank_col3 = st.columns([1.5, 1.5, 1])
+    rank_col1, rank_col2 = st.columns([1.5, 1.5])
     
     with rank_col1:
         for i, row in ranking_df.iterrows():
@@ -711,17 +711,6 @@ elif st.session_state.page == "Map":
             🟡 Prioritas Sedang: {medium_priority_miskin:.0f} ribu jiwa<br>
             🟢 Prioritas Rendah: {low_priority_miskin:.0f} ribu jiwa
             </p>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with rank_col3:
-        st.markdown(f"""
-        <div class="dashboard-card" style="padding: 0.75rem;">
-            <h3 style="font-size: 0.75rem;">📍 Legenda Prioritas</h3>
-            <hr>
-            <p style="font-size: 0.65rem;"><span class="legend-dot" style="background: #EF4444;"></span> Prioritas Tinggi</p>
-            <p style="font-size: 0.65rem;"><span class="legend-dot" style="background: #F59E0B;"></span> Prioritas Sedang</p>
-            <p style="font-size: 0.65rem;"><span class="legend-dot" style="background: #10B981;"></span> Prioritas Rendah</p>
         </div>
         """, unsafe_allow_html=True)
 
