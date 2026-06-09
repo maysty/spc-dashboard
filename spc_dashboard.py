@@ -669,13 +669,13 @@ elif st.session_state.page == "Map":
             
             st.markdown(f"""
             <div class="ranking-card" style="border-left-color: {color}; padding: 0.5rem;">
-                <table style="width: 100%; font-size: 0.7rem;">
+                <table style="width: 100%; font-size: 1rem;">
                     <tr>
                         <td style="width: 35px;"><strong>{i}.</strong></td>
                         <td><strong>{row['Kabupaten/Kota']}</strong><br><span style="color: {color};">{row['Prioritas']}</span></td>
                         <td style="text-align: right;">
                             <strong>{row['Penduduk Miskin']:.1f}%</strong><br>
-                            <span style="font-size: 0.6rem;">Kemiskinan</span>
+                            <span style="font-size: 0.8rem;">Kemiskinan</span>
                         </td>
                         <td style="text-align: center; width: 30px;">{icon}</td>
                     </tr>
@@ -700,13 +700,13 @@ elif st.session_state.page == "Map":
 
         st.markdown(f"""
         <div class="dashboard-card" style="padding: 0.75rem;">
-            <h3 style="font-size: 0.75rem;">📋 Ringkasan Prioritas</h3>
+            <h3 style="font-size: 1rem;">📋 Ringkasan Prioritas</h3>
             <hr>
-            <p style="font-size: 0.65rem;"><strong>🔴 Prioritas Tinggi:</strong> {high_names}</p>
-            <p style="font-size: 0.65rem;"><strong>🟡 Prioritas Sedang:</strong> {medium_names}</p>
-            <p style="font-size: 0.65rem;"><strong>🟢 Prioritas Rendah:</strong> {low_names}</p>
+            <p style="font-size: 0.8rem;"><strong>🔴 Prioritas Tinggi:</strong> {high_names}</p>
+            <p style="font-size: 0.8rem;"><strong>🟡 Prioritas Sedang:</strong> {medium_names}</p>
+            <p style="font-size: 0.8rem;"><strong>🟢 Prioritas Rendah:</strong> {low_names}</p>
             <hr>
-            <p style="font-size: 0.65rem;"><strong>Total Penduduk Miskin:</strong><br>
+            <p style="font-size: 0.8rem;"><strong>Total Penduduk Miskin:</strong><br>
             🔴 Prioritas Tinggi: {high_priority_miskin:.0f} ribu jiwa<br>
             🟡 Prioritas Sedang: {medium_priority_miskin:.0f} ribu jiwa<br>
             🟢 Prioritas Rendah: {low_priority_miskin:.0f} ribu jiwa
