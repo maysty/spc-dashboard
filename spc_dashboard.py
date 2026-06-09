@@ -166,18 +166,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Data default
-def get_default_data():
-    data = {
-        'Kabupaten/Kota': ['Gunungkidul', 'Kulonprogo', 'Bantul', 'Sleman', 'Yogyakarta'],
-        'Penduduk Miskin': [120000, 95000, 85000, 60000, 35000],
-        'UMK': [2100000, 2100000, 2150000, 2200000, 2300000],
-        'TPAK': [68.9, 72.3, 75.8, 80.2, 85.5],
-        'RLS': [8.5, 9.2, 10.1, 11.3, 12.5],
-        'Luas Wilayah (km²)': [1485.36, 586.27, 506.85, 574.82, 32.5],
-        'Jumlah Penduduk Miskin (ribu)': [120, 95, 85, 60, 35]
-    }
-    return pd.DataFrame(data)
-
 @st.cache_data
 def load_data():
     df = pd.read_excel("data/data_spc.xlsx", engine='openpyxl')
@@ -186,11 +174,9 @@ def load_data():
 @st.cache_data
 def perform_clustering(df):
     # Warna: Merah untuk Prioritas Tinggi, Kuning untuk Sedang, Hijau untuk Rendah
-    features = ['TPAK', 'RLS', 'Jumlah Penduduk Miskin (ribu)']
-    
-    df['Tingkat Kemiskinan Relatif'] = (df['Jumlah Penduduk Miskin (ribu)'] / df['Luas Wilayah (km²)'] * 10)
-    
-    X = df[['TPAK', 'RLS', 'Tingkat Kemiskinan Relatif']]
+    features = ['TPAK', 'RLS', 'Penduduk Miskin', 'UMK']
+        
+    X = df[['TPAK', 'RLS', 'Penduduk Miskin', 'UMK']]
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     
